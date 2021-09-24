@@ -1,11 +1,9 @@
-import click
 import textwrap
 
 import click
-from click.decorators import version_option
-import requests
 
 from . import __version__, wikipedia
+
 
 @click.command()
 @click.option(
@@ -14,15 +12,15 @@ from . import __version__, wikipedia
     default="en",
     help="Language edition of Wikipedia",
     metavar="LANG",
-    show_default=True
+    show_default=True,
 )
 @click.version_option(version=__version__)
 def main(language):
     """The hypermodern Python project"""
     data = wikipedia.random_page(language=language)
 
-    title = data['title']
-    extract = data['extract']
+    title = data["title"]
+    extract = data["extract"]
 
     click.secho(title, fg="green")
     click.echo(textwrap.fill(extract))
